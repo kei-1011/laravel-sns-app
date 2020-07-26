@@ -34,10 +34,30 @@ class ArticleController extends Controller
     }
 
     /**
-     * 記事更新
+     * 記事更新画面
      */
     public function edit(Article $article)
     {
         return view('articles.edit', ['article' => $article]);
+    }
+
+    /**
+     * 記事更新
+     */
+    public function update(ArticleRequest $request, Article $article)
+    {
+        $article->title = $request->title;
+        $article->body = $request->body;
+        $article->save();
+        return redirect()->route('articles.index');
+    }
+
+    /**
+     * 記事削除
+     */
+    public function destroy(Article $article)
+    {
+        $article->delete();
+        return redirect()->route('articles.index');
     }
 }
