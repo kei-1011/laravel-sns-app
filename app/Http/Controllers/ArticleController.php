@@ -22,8 +22,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * ArticleRequestとArticleのインスタンスを作成
-     *
+     * 記事作成
      */
     public function store(ArticleRequest $request, Article $article)
     {
@@ -32,5 +31,13 @@ class ArticleController extends Controller
         $article->user_id = $request->user()->id;
         $article->save();
         return redirect()->route('articles.index');
+    }
+
+    /**
+     * 記事更新
+     */
+    public function edit(Article $article)
+    {
+        return view('articles.edit', ['article' => $article]);
     }
 }
