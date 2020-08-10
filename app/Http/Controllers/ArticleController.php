@@ -60,4 +60,12 @@ class ArticleController extends Controller
         $article->delete();
         return redirect()->route('articles.index');
     }
+
+    /**
+     * 記事詳細画面
+     */
+    public function show(Article $article)
+    {
+        return view('articles.show', ['article' => $article]);
+    }
 }
